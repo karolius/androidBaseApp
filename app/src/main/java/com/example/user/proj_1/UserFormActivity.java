@@ -39,12 +39,10 @@ public class UserFormActivity extends AppCompatActivity {
         // ustawienie listenera na zmiane focusu pol z funkcja validujaca jako parametr
         setOnFocusChangeListener(et_name, new Callable<Boolean>() {
             public Boolean call(){
-                return validateTextField(et_name, 4, 30, nameErrorMessage, true);}
-        });
+                return validateTextField(et_name, 4, 30, nameErrorMessage, true);}});
         setOnFocusChangeListener(et_surname, new Callable<Boolean>() {
             public Boolean call(){
-                return validateTextField(et_surname, 4, 50, surnameErrorMessage, true);}
-        });
+                return validateTextField(et_surname, 1, 50, surnameErrorMessage, true);}});
         setOnFocusChangeListener(et_surname, new Callable<Boolean>() {
             public Boolean call(){
                 return validateNumberField(et_grades, 5, 15, gradesErrorMessage, true);}
@@ -119,9 +117,14 @@ public class UserFormActivity extends AppCompatActivity {
     public Boolean validateTextField(EditText textField, int minLength, int maxLength,
                                      String errorMessage, boolean showErrorMessage){
         String strName = textField.getText().toString().trim();
+        Toast.makeText(UserFormActivity.this,
+                ""+strName.length()+"   "+strName.isEmpty(),
+                Toast.LENGTH_SHORT).show();
+
         if (strName.isEmpty() || minLength > strName.length() || strName.length() > maxLength) {
-            if(showErrorMessage)
+            if(showErrorMessage) {
                 textField.setError(errorMessage);
+            }
             return false;
         }
         return true;
