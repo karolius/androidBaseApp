@@ -1,5 +1,6 @@
 package com.example.user.proj_1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -28,6 +29,11 @@ public class UserFormActivity extends AppCompatActivity {
         et_buttonGrades.setVisibility(View.INVISIBLE);
 
 
+        String strName = et_surname.getText().toString().trim();
+        Toast.makeText(UserFormActivity.this, ""+ strName + strName.isEmpty() + strName.length(),
+                Toast.LENGTH_SHORT).show();
+
+
         // obsluge zmiany focusu pol tekstowych:
         // wiadomosci co nalezy poprawic w przypadku zajscia zdarzenia
         final String nameErrorMessage, surnameErrorMessage, gradesErrorMessage;
@@ -43,7 +49,7 @@ public class UserFormActivity extends AppCompatActivity {
         setOnFocusChangeListener(et_surname, new Callable<Boolean>() {
             public Boolean call(){
                 return validateTextField(et_surname, 1, 50, surnameErrorMessage, true);}});
-        setOnFocusChangeListener(et_surname, new Callable<Boolean>() {
+        setOnFocusChangeListener(et_grades, new Callable<Boolean>() {
             public Boolean call(){
                 return validateNumberField(et_grades, 5, 15, gradesErrorMessage, true);}
         });
@@ -53,6 +59,16 @@ public class UserFormActivity extends AppCompatActivity {
         et_name.addTextChangedListener(new GenericTextWatcher(et_name));
         et_surname.addTextChangedListener(new GenericTextWatcher(et_surname));
         et_grades.addTextChangedListener(new GenericTextWatcher(et_grades));
+    }
+
+
+    public void onGradesButtonClick(View v){
+        if(v.getId()  == R.id.Bgrades){
+            Intent generateGradesForm = new Intent(UserFormActivity.this, GradesFormActivity.class);
+            Integer count = Integer.parseInt(et_grades.getText().toString().trim());
+            generateGradesForm.putExtra("Count", count);
+            startActivity(generateGradesForm);
+        }
     }
 
 
@@ -89,7 +105,7 @@ public class UserFormActivity extends AppCompatActivity {
                     nameChecked = validateTextField(et_name, 4, 30, "", false);
                     break;
                 case R.id.TFsurname:
-                    surnameChecked = validateTextField(et_surname, 4, 50, "", false);
+                    surnameChecked = validateTextField(et_surname, 1, 50, "", false);
                     break;
                 case R.id.TFgrades:
                     gradesChecked = validateNumberField(et_grades, 5, 15, "", false);
@@ -117,10 +133,9 @@ public class UserFormActivity extends AppCompatActivity {
     public Boolean validateTextField(EditText textField, int minLength, int maxLength,
                                      String errorMessage, boolean showErrorMessage){
         String strName = textField.getText().toString().trim();
-        Toast.makeText(UserFormActivity.this,
-                ""+strName.length()+"   "+strName.isEmpty(),
-                Toast.LENGTH_SHORT).show();
 
+        Toast.makeText(UserFormActivity.this, ""+ strName + strName.isEmpty() + strName.length(),
+                Toast.LENGTH_SHORT).show();
         if (strName.isEmpty() || minLength > strName.length() || strName.length() > maxLength) {
             if(showErrorMessage) {
                 textField.setError(errorMessage);
@@ -129,6 +144,7 @@ public class UserFormActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
     public Boolean validateNumberField(EditText textField, int minValue, int maxValue,
                                      String errorMessage, boolean showErrorMessage){

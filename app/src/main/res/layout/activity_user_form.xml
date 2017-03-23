@@ -70,5 +70,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:text="Grades"
+        android:onClick="onGradesButtonClick"
         />
 </RelativeLayout>

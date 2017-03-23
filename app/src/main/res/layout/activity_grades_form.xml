@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ocena x:"
+        android:layout_alignParentTop="true"
+        android:textSize="32dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/listaTextEtykieta"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        />
+    <RadioGroup
+        android:id="@+id/grupaOceny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@+id/listaTextEtykieta"
+        android:layout_marginTop="5dp"
+        >
+        <RadioButton
+            android:id="@+id/gradeButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:text="2" />
+        <RadioButton
+            android:id="@+id/gradeButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:text="3" />
+        <RadioButton
+            android:id="@+id/gradeButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:text="4" />
+        <RadioButton
+            android:id="@+id/gradeButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:text="5" />
+    </RadioGroup>
+</RelativeLayout>
