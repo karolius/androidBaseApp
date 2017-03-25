@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,11 +28,6 @@ public class UserFormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_form);
         getFields();
         et_buttonGrades.setVisibility(View.INVISIBLE);
-
-
-        String strName = et_surname.getText().toString().trim();
-        Toast.makeText(UserFormActivity.this, ""+ strName + strName.isEmpty() + strName.length(),
-                Toast.LENGTH_SHORT).show();
 
 
         // obsluge zmiany focusu pol tekstowych:
@@ -65,9 +61,10 @@ public class UserFormActivity extends AppCompatActivity {
     public void onGradesButtonClick(View v){
         if(v.getId()  == R.id.Bgrades){
             Intent generateGradesForm = new Intent(UserFormActivity.this, GradesFormActivity.class);
-            Integer count = Integer.parseInt(et_grades.getText().toString().trim());
-            generateGradesForm.putExtra("Count", count);
-            startActivity(generateGradesForm);
+            int gradesQuantity = Integer.parseInt(et_grades.getText().toString().trim());
+            Log.d("Thats gQ:    ", String.valueOf(gradesQuantity));
+            generateGradesForm.putExtra("gradesQuantity", gradesQuantity);
+            startActivityForResult(generateGradesForm, 1);
         }
     }
 
@@ -133,9 +130,6 @@ public class UserFormActivity extends AppCompatActivity {
     public Boolean validateTextField(EditText textField, int minLength, int maxLength,
                                      String errorMessage, boolean showErrorMessage){
         String strName = textField.getText().toString().trim();
-
-        Toast.makeText(UserFormActivity.this, ""+ strName + strName.isEmpty() + strName.length(),
-                Toast.LENGTH_SHORT).show();
         if (strName.isEmpty() || minLength > strName.length() || strName.length() > maxLength) {
             if(showErrorMessage) {
                 textField.setError(errorMessage);

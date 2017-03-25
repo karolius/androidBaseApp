@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GradesFormActivity" android:label="@string/etykieta"></activity>
+        <activity android:name=".GradesFormActivity"></activity>
     </application>
 
 </manifest>

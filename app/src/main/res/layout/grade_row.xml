@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/gradeLabel"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="Ocena 1: " />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gradesGroup"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grade2"
+            android:text="2"
+            android:checked="true"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grade3"
+            android:text="3"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grade4"
+            android:text="4"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grade5"
+            android:text="5"/>
+    </RadioGroup>
+</LinearLayout>
