@@ -3,7 +3,6 @@ package com.example.user.proj_1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -24,11 +23,18 @@ public class GradesFormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades_form);
 
+        // odczytanie liczby ocen z danych otrzmyanych z UserFormActivity
         gradesQuantity = getIntent().getIntExtra("gradesQuantity", gradesQuantity);
         generateGradesList();
     }
 
 
+    /**
+     * Inicjalizacja listy elementów GradeModel
+     * Utworzenie obiektu adaptera i powiazanie go z lista
+     * Ustawienie adaptera dla kontrolki ListView widoku
+     * Zapisanie listy nowymi obiektami
+     */
     private  void generateGradesList(){
         gradesList = new ArrayList<GradeModel>();
         GradesListCustomAdapter adapter = new GradesListCustomAdapter(
@@ -36,10 +42,11 @@ public class GradesFormActivity extends AppCompatActivity {
         gradesListView=(ListView) findViewById(R.id.gradesListView);
         gradesListView.setAdapter((ListAdapter) adapter);
         for(int i=0; i<gradesQuantity; i++)
-            gradesList.add(new GradeModel("grade "+(i+1)));
+            gradesList.add(new GradeModel("Grade "+(i+1)));
     }
 
 
+    // Funkcja liczaca srednia ocen
     private double getAverage(){
         double avg = 0;
         for(GradeModel grade: gradesList)
@@ -49,6 +56,12 @@ public class GradesFormActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Funkcja zaokraglajaca wartosc typu double
+     * @param value przekazywana wartosc
+     * @param places ilosc miejsc po przecinku
+     * @return
+     */
     public double round(double value, int places){
         if (places < 0) throw new IllegalArgumentException();
 
@@ -57,11 +70,13 @@ public class GradesFormActivity extends AppCompatActivity {
         return bd.doubleValue();
     }
 
-    public void onConfirmClick(View v) {
+
+    // Funkcja tworzy obiekt do aktywnosci UserFromAcriviy dolaczajac wartosc sredniej ocen
+    public void onConfirmBtnClick(View v) {
         Intent giveResult = new Intent(GradesFormActivity.this, UserFormActivity.class);
 
         setResult(RESULT_OK, giveResult);
         giveResult.putExtra("average",getAverage());
-        finish();
+        finish(); // zakoncz aktywnosc, wroc do aktywnosci glownej
     }
 }

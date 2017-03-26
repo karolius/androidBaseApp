@@ -3,21 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".GradesFormActivity">
+
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gradesListView">
     </ListView>
-
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/Bconfirm"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/gradesListView"
-        android:onClick="onConfirmClick"
-        android:text="Gotowe"
-        android:id="@+id/Bconfirm"
-        android:layout_alignParentLeft="true" />
+        android:onClick="onConfirmBtnClick"
+        android:text="Confirm" />
 </RelativeLayout>

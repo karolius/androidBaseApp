@@ -1,7 +1,6 @@
 package com.example.user.proj_1;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +27,10 @@ public class GradesListCustomAdapter extends ArrayAdapter<GradeModel> {
     //tworzenie nowego wiersza
     @Override
     public View getView(final int gradeRowNumber, View viewToRecycle, ViewGroup parent){
-        Log.d("ADAPTER 1", "a");
         LayoutInflater contextLayout = context.getLayoutInflater();
         //utworzenie layout na podstawie pliku XML
         View gradeRowView = contextLayout.inflate(R.layout.grade_row, parent, false);
         final GradeModel gradeRow = gradesList.get(gradeRowNumber);
-        Log.d("ADAPTER 2", "a");
         //tworzenie nowego wiersza
         if (viewToRecycle == null){
             //utworzenie layout na podstawie pliku XML
@@ -68,18 +65,14 @@ public class GradesListCustomAdapter extends ArrayAdapter<GradeModel> {
         }else{//aktualizacja istniejącego wiersza
             //powiązanie grupy przycisków z obiektem w modelu i
             //zapisanie referencji do obiektu modelu w grupie przycisków
-            Log.d("l", "aa");
             gradeRowView = viewToRecycle;
-            Log.d("l", "aa");
         }
 
-        Log.d("ADAPTER 2,5 labele", "a");
         TextView etykieta = (TextView) gradeRowView.findViewById(R.id.gradeLabel);
         //ustawienie tekstu etykiety na podstawie modelu
-        etykieta.setText(gradeRowNumber);
+        etykieta.setText(gradeRow.getName());
         //zaznaczenie odpowiedniego przycisku na podtawie modelu
         //zwrócenie nowego lub zaktualizowanego wiersza listy
-        Log.d("ADAPTER 3 i zyje", "a");
         return gradeRowView;
     }
 }

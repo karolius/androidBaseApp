@@ -10,7 +10,7 @@ public class GradeModel {
 
     public GradeModel(String name) {
         this.name = name;
-        value = 2;
+        value = 5;
     }
 
     public void setValue(int value) {
